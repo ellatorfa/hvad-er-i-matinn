@@ -5,114 +5,231 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Matseðill">
+<meta name="apple-mobile-web-app-title" content="Í matinn">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#1f4d3a">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%231f4d3a'/%3E%3Ccircle cx='90' cy='96' r='50' fill='%23fff'/%3E%3Ccircle cx='90' cy='96' r='34' fill='none' stroke='%23e2492f' stroke-width='6'/%3E%3Crect x='30' y='40' width='8' height='70' rx='4' fill='%23fff'/%3E%3Crect x='142' y='40' width='8' height='70' rx='4' fill='%23fff'/%3E%3C/svg%3E">
-<title>Matseðill vikunnar</title>
+<meta name="theme-color" content="#0b0e14">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%230b0e14'/%3E%3Cpath d='M38 92h104a52 52 0 0 1-104 0z' fill='%231c2b4d'/%3E%3Cpath d='M38 92h104a52 52 0 0 1-104 0z' fill='none' stroke='%23e8ebf2' stroke-width='7'/%3E%3Cpath d='M70 70c-6-8 6-12 0-20M90 66c-6-8 6-12 0-20M110 70c-6-8 6-12 0-20' fill='none' stroke='%238fb3ff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Hvað er í matinn?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE: warm, homely, quick to read at the fridge or on the bus.
-   IDEA: the handwritten weekly menu card pinned to the kitchen fridge.
-   PICTURE: tonight's dish as a big plate card at the top; the week below as a ruled list with large day names.
-   COLOUR and TYPE: basil green field, white card, tomato accent; Fraunces for days and dishes, Figtree for notes.
-   LAYOUT: one column on phones; on wide screens tonight left, week right. */
-:root{color-scheme:light dark;
- --bg:light-dark(#1f4d3a,#0f2219);
- --card:light-dark(#ffffff,#18241e);
- --ink:light-dark(#18211c,#eef2ec);
- --mute:light-dark(#5c6a62,#9fb0a5);
- --line:light-dark(#e3e8e4,#2a3a31);
- --tom:#e2492f;
- --soft:light-dark(#fdeee9,#3a201a);}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+/* VOICE: cool, confident, quick — something a 17-year-old would actually open.
+   IDEA: a streetwear drop calendar: one big "tonight" release, the week as a sharp list.
+   PICTURE: tonight's dish huge on a navy slab with a line-drawn bowl; the recipe opens as a full-screen cook mode.
+   COLOUR and TYPE: black ground, graphite cards, deep navy slab, ice-blue accent; Unbounded for days and dishes, Inter for the rest.
+   LAYOUT: one column on phones; tonight left and week right above 820px; recipe sheet covers the screen. */
+:root{color-scheme:dark;
+ --bg:#0b0e14;--card:#151922;--card2:#1b202b;--line:#262c39;--ink:#e8ebf2;--mute:#8b93a5;
+ --navy:#16233f;--navy2:#22355e;--ice:#8fb3ff;--done:#4b5263}
+:root[data-theme=light]{color-scheme:light;
+ --bg:#e9ebef;--card:#ffffff;--card2:#f3f4f7;--line:#d8dce3;--ink:#0f1420;--mute:#5d6576;
+ --navy:#16233f;--navy2:#22355e;--ice:#2f5fd0;--done:#b3b9c5}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif;overflow-x:clip;
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;
  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-.wrap{max-width:1040px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,14px) 40px}
-header{color:#fff;margin-bottom:18px}
-header h1{font:800 clamp(30px,7vw,46px)/1.05 Fraunces,Georgia,serif;margin:0;text-wrap:balance}
-header p{margin:6px 0 0;color:#cfe3d6;font-size:15px}
-.grid{display:grid;gap:18px}
-@media(min-width:820px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:start}}
-.tonight{background:var(--card);border-radius:22px;padding:22px;position:relative;overflow:hidden;box-shadow:0 18px 40px #0003}
-.tonight .lab{display:inline-block;background:var(--tom);color:#fff;font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
-.plate{width:min(220px,60%);aspect-ratio:1;margin:14px auto 4px;display:block}
-.tonight h2{font:800 clamp(26px,6vw,36px)/1.08 Fraunces,Georgia,serif;margin:10px 0 6px;text-wrap:balance}
-.tonight .sub{color:var(--mute);margin:0 0 12px}
-.tip{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin-top:10px}
-.tip b{color:var(--tom)}
-.week{background:var(--card);border-radius:22px;padding:6px 18px;box-shadow:0 18px 40px #0003}
-.day{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
-.day:last-child{border-bottom:0}
-.dname{font:800 22px/1 Fraunces,Georgia,serif;padding-top:2px}
-.dname small{display:block;font:400 13px/1.4 Figtree,sans-serif;color:var(--mute);margin-top:4px}
-.dish{font:600 18px/1.3 Fraunces,Georgia,serif}
-.note{font-size:14px;color:var(--mute);margin-top:3px}
-.note.prep{color:var(--tom);font-weight:600}
-.day.today{background:var(--soft);margin:0 -18px;padding-inline:18px;border-radius:14px;border-bottom-color:transparent}
-.day.past .dish,.day.past .dname{opacity:.45}
-.day.fri .dish::after{content:" 🍔"}
-footer{color:#cfe3d6;font-size:13px;margin-top:18px}
-@media(prefers-reduced-motion:no-preference){.plate .steam{animation:rise 3s ease-in-out infinite}@keyframes rise{0%{opacity:0;transform:translateY(6px)}50%{opacity:.7}100%{opacity:0;transform:translateY(-10px)}}}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:12px}
+.wrap{max-width:1060px;margin:0 auto;padding:clamp(18px,4vw,44px) max(4vw,14px) 36px}
+header{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:18px}
+h1{font:800 clamp(26px,6.5vw,40px)/1.05 Unbounded,system-ui,sans-serif;margin:0;letter-spacing:-.01em}
+#range{color:var(--mute);font-size:14px;margin:6px 0 0}
+.grid{display:grid;gap:16px}
+@media(min-width:820px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+.hero{display:block;width:100%;text-align:left;background:linear-gradient(160deg,var(--navy2),var(--navy) 60%,#0d1528);color:#e8ebf2;
+ border-radius:24px;padding:22px 22px 20px;position:relative;overflow:hidden;min-height:300px}
+.hero .lab{display:inline-block;border:1px solid #ffffff33;border-radius:99px;padding:4px 12px;font-size:13px;color:#c9d6f5}
+.hero h2{font:800 clamp(28px,7.5vw,44px)/1.04 Unbounded,system-ui,sans-serif;margin:14px 0 8px;max-width:13ch;text-wrap:balance;position:relative;z-index:1}
+.hero .sub{color:#b8c3dc;margin:0;max-width:30ch;position:relative;z-index:1}
+.bowl{position:absolute;right:-28px;bottom:-34px;width:min(250px,58%);opacity:.95}
+.cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#e8ebf2;color:#0b0e14;font-weight:600;padding:11px 16px;border-radius:99px;position:relative;z-index:1}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1}
+.chip{font-size:13px;background:#ffffff14;border:1px solid #ffffff22;border-radius:10px;padding:6px 10px;color:#dfe6f6}
+.chip b{color:var(--ice)}
+:root[data-theme=light] .chip b{color:#9fbcff}
+.week{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:6px}
+.day{display:grid;grid-template-columns:4.6em minmax(0,1fr) auto;gap:2px 12px;align-items:center;width:100%;text-align:left;padding:14px 12px;border-radius:18px;min-height:64px}
+.day+.day{border-top:1px solid var(--line)}
+.day:hover{background:var(--card2)}
+.dn{font:800 20px/1 Unbounded,system-ui,sans-serif}
+.dn small{display:block;font:500 12px/1.4 Inter,sans-serif;color:var(--mute);margin-top:5px}
+.dish{font:600 17px/1.3 Inter,sans-serif}
+.note{font-size:13.5px;color:var(--mute);margin-top:2px}
+.note.prep{color:var(--ice)}
+.arrow{color:var(--mute);font-size:20px}
+.day.today{background:var(--navy);border-top-color:transparent;color:#e8ebf2}
+.day.today+.day{border-top-color:transparent}
+.day.today .dn small,.day.today .note{color:#b8c3dc}
+.day.past{opacity:.42}
+footer{color:var(--mute);font-size:13px;margin-top:16px}
+/* recipe sheet */
+.sheet{position:fixed;inset:0;background:var(--bg);z-index:10;overflow-y:auto;transform:translateY(100%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s;
+ padding:env(safe-area-inset-top) env(safe-area-inset-right) calc(env(safe-area-inset-bottom) + 24px) env(safe-area-inset-left)}
+.sheet.open{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.sh{max-width:760px;margin:0 auto;padding:16px max(4vw,16px)}
+.bar{position:sticky;top:0;background:var(--bg);display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;z-index:2}
+.btn{min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:15px}
+.btn.on{background:var(--ice);color:#0b0e14;border-color:transparent}
+.sh h2{font:800 clamp(26px,7vw,40px)/1.06 Unbounded,system-ui,sans-serif;margin:10px 0 6px;text-wrap:balance}
+.meta{color:var(--mute);margin:0 0 18px}
+.sh h3{font:800 16px/1.2 Unbounded,system-ui,sans-serif;margin:26px 0 10px}
+.ing,.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ing button,.steps button{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:17px;line-height:1.45;min-height:48px}
+.box{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--mute);margin-top:2px;display:grid;place-items:center}
+.num{flex:none;width:28px;height:28px;border-radius:99px;background:var(--navy2);color:#e8ebf2;font:800 13px/28px Unbounded,sans-serif;text-align:center}
+.done{color:var(--done)}
+.done .box{background:var(--ice);border-color:var(--ice)}
+.done .box::after{content:"";width:8px;height:12px;border:solid #0b0e14;border-width:0 3px 3px 0;transform:translateY(-1px) rotate(45deg)}
+.done .num{background:var(--ice);color:#0b0e14}
+.done span:last-child{text-decoration:line-through}
+.tipbox{background:var(--navy);color:#dfe6f6;border-radius:16px;padding:14px 16px;margin-top:22px;font-size:15.5px}
+.tipbox b{color:#9fbcff}
+.norec{color:var(--mute);font-size:17px}
+@media(prefers-reduced-motion:reduce){.sheet,.sheet.open{transition:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
- <h1>Matseðill vikunnar</h1>
- <p id="range">Vika 48 · 21.–27. nóvember</p>
-</header>
-<div class="grid">
- <section class="tonight" id="tonight" aria-live="polite">
-  <span class="lab" id="tlab">Í kvöld</span>
-  <svg class="plate" viewBox="0 0 200 200" aria-hidden="true">
-   <g class="steam" fill="none" stroke="var(--mute)" stroke-width="4" stroke-linecap="round"><path d="M80 40c-8-10 8-16 0-26"/><path d="M100 36c-8-10 8-16 0-26"/><path d="M120 40c-8-10 8-16 0-26"/></g>
-   <ellipse cx="100" cy="128" rx="86" ry="62" fill="#0002"/>
-   <ellipse cx="100" cy="120" rx="86" ry="62" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
-   <ellipse cx="100" cy="120" rx="58" ry="40" fill="none" stroke="var(--tom)" stroke-width="5"/>
-   <circle cx="100" cy="120" r="22" fill="#f2b84b"/><circle cx="86" cy="112" r="8" fill="#3d8a5b"/><circle cx="116" cy="126" r="7" fill="#3d8a5b"/>
-  </svg>
-  <h2 id="tdish">–</h2>
-  <p class="sub" id="tsub"></p>
-  <div id="ttips"></div>
- </section>
- <section class="week" aria-label="Vikan">
-  <div id="days"></div>
- </section>
+ <header><div><h1>Hvað er í matinn?</h1><p id="range"></p></div></header>
+ <div class="grid">
+  <button class="hero" id="hero" aria-label="Opna uppskrift kvöldsins">
+   <span class="lab" id="hlab">Í kvöld</span>
+   <h2 id="hdish">–</h2>
+   <p class="sub" id="hsub"></p>
+   <div class="chips" id="hchips"></div>
+   <span class="cta">Sjá uppskrift →</span>
+   <svg class="bowl" viewBox="0 0 240 200" aria-hidden="true">
+    <path d="M60 64c-8-12 8-18 0-30M96 56c-8-12 8-18 0-30M132 64c-8-12 8-18 0-30" fill="none" stroke="#8fb3ff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+    <ellipse cx="120" cy="96" rx="104" ry="20" fill="#0b0e14" opacity=".35"/>
+    <path d="M16 90h208a104 92 0 0 1-208 0z" fill="#0d1528"/>
+    <path d="M16 90h208a104 92 0 0 1-208 0z" fill="none" stroke="#e8ebf2" stroke-width="6"/>
+    <path d="M40 120h160" stroke="#8fb3ff" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+    <path d="M62 150h116" stroke="#8fb3ff" stroke-width="4" stroke-linecap="round" opacity=".3"/>
+   </svg>
+  </button>
+  <section class="week" aria-label="Vikan"><div id="days"></div></section>
+ </div>
+ <footer>Smelltu á rétt til að sjá uppskriftina. Afgangur í einn matarpakka fylgir hverjum rétti.</footer>
 </div>
-<footer>Uppfært 23. nóv. Afgangur í einn matarpakka fylgir hverjum rétti.</footer>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="rtitle">
+ <div class="sh">
+  <div class="bar">
+   <button class="btn" id="close">← Til baka</button>
+   <button class="btn" id="wake" aria-pressed="false">Skjár vakandi</button>
+  </div>
+  <h2 id="rtitle"></h2>
+  <p class="meta" id="rmeta"></p>
+  <div id="rbody"></div>
+ </div>
 </div>
+
 <script>
 {
+const WEEK="Vika 48";
 const menu=[
- {d:"2026-11-21",n:"Lau",dish:"Svínalund í sveppa- og sinnepssósu",sub:"Með perlubyggi og strengjabaunum"},
- {d:"2026-11-22",n:"Sun",dish:"Spicy tuna poke bowl",sub:"Túnfiskur, kæld sushihrísgrjón, avókadó og baunir",prep:"Sjóða hrísgrjónin um morguninn og kæla"},
- {d:"2026-11-23",n:"Mán",dish:"Mac'n cheese með brokkolí",sub:"Salat með edikdressingu borðað fyrst",tip:"Fituríkur réttur – fylgjast með seinni toppi 3–4 klst eftir mat"},
- {d:"2026-11-24",n:"Þri",dish:"Kjúklinga tikka masala",sub:"Með basmati, linsum og raitu"},
- {d:"2026-11-25",n:"Mið",dish:"Pasta Bolognese",sub:"Heilhveitispaghetti, parmesan og salat",prep:"Sjóða kartöflur fyrir morgundaginn og kæla"},
- {d:"2026-11-26",n:"Fim",dish:"Kjúklingasnitsel",sub:"Með köldu kartöflusalati, gúrku og tómötum"},
- {d:"2026-11-27",n:"Fös",dish:"Hamborgarar",sub:"Föstudagshefð",fri:true}
+ {d:"2026-11-21",n:"Lau",id:"svinalund",dish:"Svínalund í sveppasósu",sub:"Perlubygg og strengjabaunir"},
+ {d:"2026-11-22",n:"Sun",id:"poke",dish:"Spicy tuna poke bowl",sub:"Túnfiskur, kæld hrísgrjón, avókadó",prep:"Sjóða hrísgrjónin um morguninn og kæla"},
+ {d:"2026-11-23",n:"Mán",id:"mac",dish:"Mac'n cheese",sub:"Með brokkolí og salati"},
+ {d:"2026-11-24",n:"Þri",id:"tikka",dish:"Kjúklinga tikka masala",sub:"Basmati, linsur og raita"},
+ {d:"2026-11-25",n:"Mið",id:"bolognese",dish:"Pasta Bolognese",sub:"Heilhveitispaghetti og parmesan",prep:"Sjóða kartöflur fyrir morgundaginn og kæla"},
+ {d:"2026-11-26",n:"Fim",id:"snitsel",dish:"Kjúklingasnitsel",sub:"Kalt kartöflusalat, gúrka og tómatar"},
+ {d:"2026-11-27",n:"Fös",id:"borgari",dish:"Hamborgarar",sub:"Föstudagshefðin"}
 ];
+const R={
+ svinalund:{meta:"5 skammtar · um 50 mín",ing:["3 svínalundir (fläskfilé, ~1,6 kg)","250 g sveppir","1 laukur","3 dl matreiðslurjómi","1–2 msk dijon-sinnep","1 kjúklingateningur","400 g perlubygg (pärlkorn)","500 g strengjabaunir (haricots verts)","Salt, pipar, smjör eða olía"],
+  steps:["Sjóða perlubyggið eftir pakkanum, um 25 mín.","Hita ofninn í 175 °C. Salta og pipra lundirnar og brúna þær á heitri pönnu.","Setja lundirnar í ofninn þar til kjarnhiti er 65 °C, um 20 mín. Láta hvíla í 5 mín.","Steikja sveppi og lauk á sömu pönnu. Bæta við rjóma, sinnepi og teningi og láta malla í 5 mín.","Sjóða strengjabaunirnar í 4 mín.","Skera lundirnar í sneiðar og bera fram með byggi, baunum og sósu."],
+  tip:"Perlubygg hækkar blóðsykurinn hægar en hrísgrjón. Baunirnar fyrst á diskinn."},
+ poke:{meta:"5 skammtar · um 40 mín + kæling",src:"The Healthy Foodie",ing:["1 kg túnfiskur í sashimi-gæðum, í teningum","½ dl sojasósa","2–3 msk sambal oelek","2 msk rifinn engifer","1 msk hrísgrjónaedik","1 msk sesamolía","1 msk sesamfræ","500 g sushihrísgrjón","300 g edamame- eða bondbaunir","2 avókadó","2 gúrkur","2 gulrætur","150 g sykurbaunir","Vorlaukur","Sterkt majó: ½ dl majónes, 2 msk sriracha, ½ tsk sesamolía"],
+  steps:["Sjóða hrísgrjónin um morguninn og kæla þau.","Hræra saman sojasósu, sambal, engifer, edik, sesamolíu og sesamfræ.","Setja túnfiskinn út í og kæla í 10–15 mín.","Hræra sterka majóið saman.","Sjóða baunirnar í 3 mín og kæla. Skera grænmetið í strimla.","Hver setur saman sína skál: hrísgrjón, grænmeti, fiskur, marinering og majó."],
+  tip:"Kæld hrísgrjón, baunir og avókadó hægja á upptöku. Minna af hrísgrjónum, meira af fiski og grænmeti."},
+ mac:{meta:"5 skammtar · um 40 mín",ing:["500 g makkarónur (gjarnan fullkorns)","50 g smjör","4 msk hveiti","8 dl mjólk","300 g cheddar, rifinn","100 g parmesan","250 g kotasæla","1 tsk dijon-sinnep","Smá múskat, salt, pipar","2 brokkolíhausar","Rasp eða ostur ofan á","Salat og edikdressing"],
+  steps:["Hita ofninn í 200 °C.","Sjóða makkarónurnar 1–2 mín styttra en stendur á pakkanum. Setja brokkolíið út í síðustu 3 mín og sigta.","Bræða smjörið, hræra hveitinu út í og píska mjólkinni smátt og smátt út í.","Hræra cheddar, parmesan, kotasælu, sinnepi og kryddi út í sósuna.","Blanda öllu saman í eldföstu móti og setja rasp eða ost ofan á.","Baka í 15–20 mín. Taka frá matarpakka áður en borið er fram.","Borða salatið með edikdressingu fyrst."],
+  tip:"Fituríkur réttur: fylgjast með seinni toppi 3–4 klst eftir mat."},
+ tikka:{meta:"5 skammtar · um 45 mín",ing:["1,8 kg úrbeinuð kjúklingalæri í bitum","1 krukka tikka masala-mauk","2 laukar","3 hvítlauksrif","Bútur af engifer","1 dós hakkaðir tómatar","1 dós kókosmjólk","2 dl vatn","1,5 dl rauðar linsur, skolaðar","150 g spínat","350 g basmati-hrísgrjón","Raita: 500 g grísk jógúrt, ½ gúrka rifin, salt, sítróna"],
+  steps:["Mýkja lauk, hvítlauk og engifer í potti.","Setja maukið út í og brúna kjúklinginn í því.","Bæta við tómötum, kókosmjólk, vatni og linsum. Láta malla í 25 mín.","Sjóða hrísgrjónin.","Hræra spínatinu út í í lokin.","Hræra raitu saman og bera fram."],
+  tip:"Linsurnar gefa trefjar og prótein. Meira kjöt og sósa en hrísgrjón á diskinn."},
+ bolognese:{meta:"5 skammtar · um 45 mín",ing:["1,2 kg nautahakk","1 laukur","2 gulrætur, rifnar","2 hvítlauksrif","2 dósir hakkaðir tómatar","2 msk tómatpúrra","1,5 dl rauðar linsur","3 dl vatn","Oregano, salt, pipar","600 g heilhveitispaghetti","Parmesan","Salat","1,2 kg kartöflur fyrir morgundaginn"],
+  steps:["Mýkja lauk, gulrætur og hvítlauk. Brúna hakkið.","Bæta við tómötum, púrru, linsum, vatni og kryddi. Láta malla í 30 mín.","Sjóða spaghettíið al dente.","Sjóða kartöflurnar fyrir snitselið á morgun og kæla þær.","Salat fyrst, svo pasta með sósu og parmesan."],
+  tip:"Linsurnar sjást ekki en gefa trefjar. Heilhveitipasta al dente hækkar blóðsykurinn hægar."},
+ snitsel:{meta:"5 skammtar · um 40 mín",ing:["1,3 kg kjúklingabringur","2 egg","Hveiti","3 dl panko","Smjör og olía","1,2 kg kartöflur, soðnar í gær og kældar","2 dl grísk jógúrt","1 dl majónes","1 tsk dijon-sinnep","½ rauðlaukur","Graslaukur eða dill","Gúrka, tómatar, sítróna"],
+  steps:["Skera kartöflurnar í bita og blanda við jógúrt, majónes, sinnep, saxaðan lauk og kryddjurtir.","Skera bringurnar í tvennt og fletja þær út.","Velta upp úr hveiti, svo eggi, svo panko.","Steikja í smjöri og olíu, 3–4 mín á hvorri hlið.","Bera fram með kartöflusalati, gúrku, tómötum og sítrónu."],
+  tip:"Kalt kartöflusalat úr kældum kartöflum hækkar blóðsykurinn hægar en heitar kartöflur."},
+ borgari:{meta:"Keypt inn á föstudag",none:"Engin uppskrift, bara föstudagshefðin.",tip:"Fituríkt: fylgjast með seinni toppi 3–4 klst eftir mat."}
+};
 const months=["jan.","feb.","mar.","apr.","maí","jún.","júl.","ág.","sep.","okt.","nóv.","des."];
-const now=new Date();
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-const today=iso(now);
-const fmt=s=>{const [y,m,d]=s.split("-");return (+d)+". "+months[+m-1]};
-document.getElementById("days").innerHTML=menu.map(x=>{
- const cls=["day",x.d===today?"today":"",x.d<today?"past":"",x.fri?"fri":""].join(" ");
- return `<div class="${cls}"><div class="dname">${x.n}<small>${fmt(x.d)}</small></div><div><div class="dish">${x.dish}</div><div class="note">${x.sub}</div>${x.prep?`<div class="note prep">${x.prep}</div>`:""}</div></div>`;
-}).join("");
-let t=menu.find(x=>x.d===today),lab="Í kvöld";
-if(!t){t=menu.find(x=>x.d>today);lab=t?"Næst":"Síðasti réttur";if(!t)t=menu[menu.length-1];}
-document.getElementById("tlab").textContent=lab+" · "+t.n+" "+fmt(t.d);
-document.getElementById("tdish").textContent=t.dish;
-document.getElementById("tsub").textContent=t.sub;
-const tips=[];
-if(t.prep)tips.push(`<div class="tip"><b>Muna:</b> ${t.prep}</div>`);
-if(t.tip)tips.push(`<div class="tip"><b>Blóðsykur:</b> ${t.tip}</div>`);
-document.getElementById("ttips").innerHTML=tips.join("");
+const fmt=s=>{const p=s.split("-");return (+p[2])+". "+months[+p[1]-1]};
+const $=id=>document.getElementById(id);
+let tonightId=null;
+
+function render(){
+ const today=iso(new Date());
+ $("range").textContent=WEEK+" · "+fmt(menu[0].d)+" – "+fmt(menu[menu.length-1].d);
+ $("days").innerHTML=menu.map(x=>{
+  const c=["day",x.d===today?"today":"",x.d<today?"past":""].join(" ");
+  return `<button class="${c}" data-id="${x.id}"><span class="dn">${x.n}<small>${fmt(x.d)}</small></span><span><span class="dish">${x.dish}</span><span class="note" style="display:block">${x.sub}</span>${x.prep?`<span class="note prep" style="display:block">${x.prep}</span>`:""}</span><span class="arrow" aria-hidden="true">›</span></button>`;
+ }).join("");
+ let t=menu.find(x=>x.d===today),lab="Í kvöld";
+ if(!t){t=menu.find(x=>x.d>today);lab="Næst";}
+ if(!t){t=menu[menu.length-1];lab="Síðast";}
+ tonightId=t.id;
+ $("hlab").textContent=lab+" · "+t.n+" "+fmt(t.d);
+ $("hdish").textContent=t.dish;
+ $("hsub").textContent=t.sub;
+ const i=menu.indexOf(t),next=menu[i+1],ch=[];
+ if(t.prep)ch.push(`<span class="chip"><b>Muna:</b> ${t.prep}</span>`);
+ if(lab==="Í kvöld"&&next&&next.prep)ch.push(`<span class="chip"><b>Á morgun:</b> ${next.dish}</span>`);
+ $("hchips").innerHTML=ch.join("");
+}
+
+let lock=null;
+async function setWake(on){
+ const b=$("wake");
+ try{
+  if(on){lock=await navigator.wakeLock.request("screen");lock.addEventListener("release",()=>{b.classList.remove("on");b.setAttribute("aria-pressed","false")});}
+  else if(lock){await lock.release();lock=null;}
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",String(on));
+ }catch(e){b.textContent="Skjár vakandi: ekki stutt";}
+}
+
+function openRecipe(id,push){
+ const m=menu.find(x=>x.id===id),r=R[id];
+ if(!m||!r)return;
+ $("rtitle").textContent=m.dish;
+ $("rmeta").textContent=m.n+" "+fmt(m.d)+" · "+r.meta+(r.src?" · byggt á "+r.src:"");
+ let h="";
+ if(r.none)h+=`<p class="norec">${r.none}</p>`;
+ if(r.ing)h+=`<h3>Hráefni</h3><ul class="ing">${r.ing.map(x=>`<li><button><span class="box"></span><span>${x}</span></button></li>`).join("")}</ul>`;
+ if(r.steps)h+=`<h3>Aðferð</h3><ol class="steps">${r.steps.map((x,i)=>`<li><button><span class="num">${i+1}</span><span>${x}</span></button></li>`).join("")}</ol>`;
+ if(r.tip)h+=`<div class="tipbox"><b>Blóðsykur:</b> ${r.tip}</div>`;
+ $("rbody").innerHTML=h;
+ $("sheet").classList.add("open");
+ $("sheet").scrollTop=0;
+ document.body.style.overflow="hidden";
+ if(push&&location.hash!=="#"+id)location.hash=id;
+ $("close").focus();
+}
+function closeRecipe(){
+ $("sheet").classList.remove("open");
+ document.body.style.overflow="";
+ if(lock)setWake(false);
+ if(location.hash)history.replaceState(null,"",location.pathname+location.search);
+}
+
+$("days").addEventListener("click",e=>{const b=e.target.closest(".day");if(b)openRecipe(b.dataset.id,true)});
+$("hero").addEventListener("click",()=>openRecipe(tonightId,true));
+$("rbody").addEventListener("click",e=>{const b=e.target.closest("button");if(b)b.classList.toggle("done")});
+$("close").addEventListener("click",closeRecipe);
+$("wake").addEventListener("click",()=>setWake(!$("wake").classList.contains("on")));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("sheet").classList.contains("open"))closeRecipe()});
+window.addEventListener("hashchange",()=>{const id=location.hash.slice(1);if(R[id])openRecipe(id,false);else if($("sheet").classList.contains("open")){$("sheet").classList.remove("open");document.body.style.overflow=""}});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden){render();if(lock===null&&$("wake").classList.contains("on"))setWake(true)}});
+
+render();
+setInterval(render,60000);
+const start=location.hash.slice(1);
+if(R[start])openRecipe(start,false);
 }
 </script>
 </body>
