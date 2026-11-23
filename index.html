@@ -134,8 +134,8 @@ const menu=[
  {d:"2026-11-22",n:"Sun",id:"poke",dish:"Spicy tuna poke bowl",sub:"Túnfiskur, kæld hrísgrjón, avókadó",prep:"Sjóða hrísgrjónin um morguninn og kæla"},
  {d:"2026-11-23",n:"Mán",id:"mac",dish:"Mac'n cheese",sub:"Með brokkolí og salati"},
  {d:"2026-11-24",n:"Þri",id:"tikka",dish:"Kjúklinga tikka masala",sub:"Basmati, linsur og raita"},
- {d:"2026-11-25",n:"Mið",id:"bolognese",dish:"Pasta Bolognese",sub:"Heilhveitispaghetti og parmesan",prep:"Sjóða kartöflur fyrir morgundaginn og kæla"},
- {d:"2026-11-26",n:"Fim",id:"snitsel",dish:"Kjúklingasnitsel",sub:"Kalt kartöflusalat, gúrka og tómatar"},
+ {d:"2026-11-25",n:"Mið",id:"bolognese",dish:"Pasta Bolognese",sub:"Heilhveitispaghetti og parmesan",prep:"Sjóða kartöflur fyrir stöppuna á morgun og kæla"},
+ {d:"2026-11-26",n:"Fim",id:"kjotbollur",dish:"Kjötbollur og kartöflustappa",sub:"Blómkál í stöppunni, grænar baunir og pressgurka"},
  {d:"2026-11-27",n:"Fös",id:"borgari",dish:"Hamborgarar",sub:"Föstudagshefðin"}
 ];
 const R={
@@ -151,12 +151,12 @@ const R={
  tikka:{meta:"5 skammtar · um 45 mín",ing:["1,8 kg úrbeinuð kjúklingalæri í bitum","1 krukka tikka masala-mauk","2 laukar","3 hvítlauksrif","Bútur af engifer","1 dós hakkaðir tómatar","1 dós kókosmjólk","2 dl vatn","1,5 dl rauðar linsur, skolaðar","150 g spínat","350 g basmati-hrísgrjón","Raita: 500 g grísk jógúrt, ½ gúrka rifin, salt, sítróna"],
   steps:["Mýkja lauk, hvítlauk og engifer í potti.","Setja maukið út í og brúna kjúklinginn í því.","Bæta við tómötum, kókosmjólk, vatni og linsum. Láta malla í 25 mín.","Sjóða hrísgrjónin.","Hræra spínatinu út í í lokin.","Hræra raitu saman og bera fram."],
   tip:"Linsurnar gefa trefjar og prótein. Meira kjöt og sósa en hrísgrjón á diskinn."},
- bolognese:{meta:"5 skammtar · um 45 mín",ing:["1,2 kg nautahakk","1 laukur","2 gulrætur, rifnar","2 hvítlauksrif","2 dósir hakkaðir tómatar","2 msk tómatpúrra","1,5 dl rauðar linsur","3 dl vatn","Oregano, salt, pipar","600 g heilhveitispaghetti","Parmesan","Salat","1,2 kg kartöflur fyrir morgundaginn"],
-  steps:["Mýkja lauk, gulrætur og hvítlauk. Brúna hakkið.","Bæta við tómötum, púrru, linsum, vatni og kryddi. Láta malla í 30 mín.","Sjóða spaghettíið al dente.","Sjóða kartöflurnar fyrir snitselið á morgun og kæla þær.","Salat fyrst, svo pasta með sósu og parmesan."],
+ bolognese:{meta:"5 skammtar · um 45 mín",ing:["1,2 kg nautahakk","1 laukur","2 gulrætur, rifnar","2 hvítlauksrif","2 dósir hakkaðir tómatar","2 msk tómatpúrra","1,5 dl rauðar linsur","3 dl vatn","Oregano, salt, pipar","600 g heilhveitispaghetti","Parmesan","Salat","1,2 kg kartöflur fyrir stöppuna á morgun"],
+  steps:["Mýkja lauk, gulrætur og hvítlauk. Brúna hakkið.","Bæta við tómötum, púrru, linsum, vatni og kryddi. Láta malla í 30 mín.","Sjóða spaghettíið al dente.","Sjóða kartöflurnar með hýðinu fyrir stöppuna á morgun og kæla þær.","Salat fyrst, svo pasta með sósu og parmesan."],
   tip:"Linsurnar sjást ekki en gefa trefjar. Heilhveitipasta al dente hækkar blóðsykurinn hægar."},
- snitsel:{meta:"5 skammtar · um 40 mín",ing:["1,3 kg kjúklingabringur","2 egg","Hveiti","3 dl panko","Smjör og olía","1,2 kg kartöflur, soðnar í gær og kældar","2 dl grísk jógúrt","1 dl majónes","1 tsk dijon-sinnep","½ rauðlaukur","Graslaukur eða dill","Gúrka, tómatar, sítróna"],
-  steps:["Skera kartöflurnar í bita og blanda við jógúrt, majónes, sinnep, saxaðan lauk og kryddjurtir.","Skera bringurnar í tvennt og fletja þær út.","Velta upp úr hveiti, svo eggi, svo panko.","Steikja í smjöri og olíu, 3–4 mín á hvorri hlið.","Bera fram með kartöflusalati, gúrku, tómötum og sítrónu."],
-  tip:"Kalt kartöflusalat úr kældum kartöflum hækkar blóðsykurinn hægar en heitar kartöflur."},
+ kjotbollur:{meta:"5 skammtar · um 50 mín",ing:["1,3 kg blandfärs (naut + svín)","1 laukur, fínt rifinn","2 egg","1 dl haframjöl","1 dl mjólk","Salt, pipar, smá múskat","Sósa: 2 dl matreiðslurjómi, 3 dl vatn, 1 nautateningur, 1 msk sojasósa, 1–2 msk hveiti","1,2 kg kartöflur, soðnar í gær með hýðinu og kældar","1 blómkálshöfuð","1 dl mjólk og smjörklípa í stöppuna","500 g frosnar grænar baunir","Pressgurka: 1 gúrka, 3 msk edik, salt, pipar","Lingonsulta (lítið)"],
+  steps:["Hita ofninn í 200 °C. Leggja haframjölið í bleyti í mjólkinni í 5 mín.","Blanda hakki, lauk, eggjum, haframjöli og kryddi saman og móta bollur.","Baka bollurnar í 15–18 mín.","Skera gúrkuna þunnt og setja í edik, salt og pipar.","Sjóða blómkálið í 10 mín. Hita kartöflurnar og stappa saman við blómkálið, mjólk og smjör.","Sósa: hræra hveitinu út í smá vatni, bæta við vatni, teningi, rjóma og soja og láta malla í 5 mín.","Sjóða grænu baunirnar í 3 mín.","Taka frá matarpakka. Borða baunir og pressgurku fyrst."],
+  tip:"Blómkálið í stöppunni helmingar kolvetnin og gefur trefjar, eins og hýðið og haframjölið. Kældar kartöflur hækka blóðsykurinn hægar. Lingonsultan er hrein kolvetni – teskeið, ekki skeið."},
  borgari:{meta:"Keypt inn á föstudag",none:"Engin uppskrift, bara föstudagshefðin.",tip:"Fituríkt: fylgjast með seinni toppi 3–4 klst eftir mat."}
 };
 const months=["jan.","feb.","mar.","apr.","maí","jún.","júl.","ág.","sep.","okt.","nóv.","des."];
