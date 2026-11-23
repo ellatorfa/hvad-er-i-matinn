@@ -85,7 +85,8 @@ footer{color:var(--mute);font-size:13px;margin-top:16px}
 .done .num{background:var(--ice);color:#0b0e14}
 .done span:last-child{text-decoration:line-through}
 .tipbox{background:var(--navy);color:#dfe6f6;border-radius:16px;padding:14px 16px;margin-top:22px;font-size:15.5px}
-.tipbox b{color:#9fbcff}
+.tipbox{display:flex;gap:12px;align-items:flex-start}
+.drop{flex:none;width:26px;height:32px;margin-top:1px;filter:drop-shadow(0 2px 6px #4f8cff66)}
 .norec{color:var(--mute);font-size:17px}
 @media(prefers-reduced-motion:reduce){.sheet,.sheet.open{transition:none}}
 </style>
@@ -205,7 +206,7 @@ function openRecipe(id,push){
  if(r.none)h+=`<p class="norec">${r.none}</p>`;
  if(r.ing)h+=`<h3>Hráefni</h3><ul class="ing">${r.ing.map(x=>`<li><button><span class="box"></span><span>${x}</span></button></li>`).join("")}</ul>`;
  if(r.steps)h+=`<h3>Aðferð</h3><ol class="steps">${r.steps.map((x,i)=>`<li><button><span class="num">${i+1}</span><span>${x}</span></button></li>`).join("")}</ol>`;
- if(r.tip)h+=`<div class="tipbox"><b>Blóðsykur:</b> ${r.tip}</div>`;
+ if(r.tip)h+=`<div class="tipbox"><svg class="drop" viewBox="0 0 32 40" role="img" aria-label="Ráð fyrir blóðsykurinn"><path d="M16 2C16 2 4 17 4 26a12 12 0 0 0 24 0C28 17 16 2 16 2z" fill="#4f8cff"/><path d="M10 25a6 6 0 0 0 5 7" fill="none" stroke="#dbe7ff" stroke-width="2.6" stroke-linecap="round"/></svg><span>${r.tip}</span></div>`;
  $("rbody").innerHTML=h;
  $("sheet").classList.add("open");
  $("sheet").scrollTop=0;
