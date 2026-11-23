@@ -226,7 +226,11 @@ $("close").addEventListener("click",closeRecipe);
 $("wake").addEventListener("click",()=>setWake(!$("wake").classList.contains("on")));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("sheet").classList.contains("open"))closeRecipe()});
 window.addEventListener("hashchange",()=>{const id=location.hash.slice(1);if(R[id])openRecipe(id,false);else if($("sheet").classList.contains("open")){$("sheet").classList.remove("open");document.body.style.overflow=""}});
-document.addEventListener("visibilitychange",()=>{if(!document.hidden){render();if(lock===null&&$("wake").classList.contains("on"))setWake(true)}});
+let hiddenAt=0;
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden){hiddenAt=Date.now();return}
+ if(hiddenAt&&Date.now()-hiddenAt>20*60*1000&&!$("sheet").classList.contains("open")){location.reload();return}
+ render();if(lock===null&&$("wake").classList.contains("on"))setWake(true)});
 
 render();
 setInterval(render,60000);
