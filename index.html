@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Matseðill">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1f4d3a">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%231f4d3a'/%3E%3Ccircle cx='90' cy='96' r='50' fill='%23fff'/%3E%3Ccircle cx='90' cy='96' r='34' fill='none' stroke='%23e2492f' stroke-width='6'/%3E%3Crect x='30' y='40' width='8' height='70' rx='4' fill='%23fff'/%3E%3Crect x='142' y='40' width='8' height='70' rx='4' fill='%23fff'/%3E%3C/svg%3E">
+<title>Matseðill vikunnar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm, homely, quick to read at the fridge or on the bus.
+   IDEA: the handwritten weekly menu card pinned to the kitchen fridge.
+   PICTURE: tonight's dish as a big plate card at the top; the week below as a ruled list with large day names.
+   COLOUR and TYPE: basil green field, white card, tomato accent; Fraunces for days and dishes, Figtree for notes.
+   LAYOUT: one column on phones; on wide screens tonight left, week right. */
+:root{color-scheme:light dark;
+ --bg:light-dark(#1f4d3a,#0f2219);
+ --card:light-dark(#ffffff,#18241e);
+ --ink:light-dark(#18211c,#eef2ec);
+ --mute:light-dark(#5c6a62,#9fb0a5);
+ --line:light-dark(#e3e8e4,#2a3a31);
+ --tom:#e2492f;
+ --soft:light-dark(#fdeee9,#3a201a);}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif;overflow-x:clip;
+ padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.wrap{max-width:1040px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,14px) 40px}
+header{color:#fff;margin-bottom:18px}
+header h1{font:800 clamp(30px,7vw,46px)/1.05 Fraunces,Georgia,serif;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:#cfe3d6;font-size:15px}
+.grid{display:grid;gap:18px}
+@media(min-width:820px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:start}}
+.tonight{background:var(--card);border-radius:22px;padding:22px;position:relative;overflow:hidden;box-shadow:0 18px 40px #0003}
+.tonight .lab{display:inline-block;background:var(--tom);color:#fff;font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+.plate{width:min(220px,60%);aspect-ratio:1;margin:14px auto 4px;display:block}
+.tonight h2{font:800 clamp(26px,6vw,36px)/1.08 Fraunces,Georgia,serif;margin:10px 0 6px;text-wrap:balance}
+.tonight .sub{color:var(--mute);margin:0 0 12px}
+.tip{background:var(--soft);border-radius:14px;padding:12px 14px;font-size:15px;margin-top:10px}
+.tip b{color:var(--tom)}
+.week{background:var(--card);border-radius:22px;padding:6px 18px;box-shadow:0 18px 40px #0003}
+.day{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.day:last-child{border-bottom:0}
+.dname{font:800 22px/1 Fraunces,Georgia,serif;padding-top:2px}
+.dname small{display:block;font:400 13px/1.4 Figtree,sans-serif;color:var(--mute);margin-top:4px}
+.dish{font:600 18px/1.3 Fraunces,Georgia,serif}
+.note{font-size:14px;color:var(--mute);margin-top:3px}
+.note.prep{color:var(--tom);font-weight:600}
+.day.today{background:var(--soft);margin:0 -18px;padding-inline:18px;border-radius:14px;border-bottom-color:transparent}
+.day.past .dish,.day.past .dname{opacity:.45}
+.day.fri .dish::after{content:" 🍔"}
+footer{color:#cfe3d6;font-size:13px;margin-top:18px}
+@media(prefers-reduced-motion:no-preference){.plate .steam{animation:rise 3s ease-in-out infinite}@keyframes rise{0%{opacity:0;transform:translateY(6px)}50%{opacity:.7}100%{opacity:0;transform:translateY(-10px)}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <h1>Matseðill vikunnar</h1>
+ <p id="range">Vika 48 · 21.–27. nóvember</p>
+</header>
+<div class="grid">
+ <section class="tonight" id="tonight" aria-live="polite">
+  <span class="lab" id="tlab">Í kvöld</span>
+  <svg class="plate" viewBox="0 0 200 200" aria-hidden="true">
+   <g class="steam" fill="none" stroke="var(--mute)" stroke-width="4" stroke-linecap="round"><path d="M80 40c-8-10 8-16 0-26"/><path d="M100 36c-8-10 8-16 0-26"/><path d="M120 40c-8-10 8-16 0-26"/></g>
+   <ellipse cx="100" cy="128" rx="86" ry="62" fill="#0002"/>
+   <ellipse cx="100" cy="120" rx="86" ry="62" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+   <ellipse cx="100" cy="120" rx="58" ry="40" fill="none" stroke="var(--tom)" stroke-width="5"/>
+   <circle cx="100" cy="120" r="22" fill="#f2b84b"/><circle cx="86" cy="112" r="8" fill="#3d8a5b"/><circle cx="116" cy="126" r="7" fill="#3d8a5b"/>
+  </svg>
+  <h2 id="tdish">–</h2>
+  <p class="sub" id="tsub"></p>
+  <div id="ttips"></div>
+ </section>
+ <section class="week" aria-label="Vikan">
+  <div id="days"></div>
+ </section>
+</div>
+<footer>Uppfært 23. nóv. Afgangur í einn matarpakka fylgir hverjum rétti.</footer>
+</div>
+<script>
+{
+const menu=[
+ {d:"2026-11-21",n:"Lau",dish:"Svínalund í sveppa- og sinnepssósu",sub:"Með perlubyggi og strengjabaunum"},
+ {d:"2026-11-22",n:"Sun",dish:"Spicy tuna poke bowl",sub:"Túnfiskur, kæld sushihrísgrjón, avókadó og baunir",prep:"Sjóða hrísgrjónin um morguninn og kæla"},
+ {d:"2026-11-23",n:"Mán",dish:"Mac'n cheese með brokkolí",sub:"Salat með edikdressingu borðað fyrst",tip:"Fituríkur réttur – fylgjast með seinni toppi 3–4 klst eftir mat"},
+ {d:"2026-11-24",n:"Þri",dish:"Kjúklinga tikka masala",sub:"Með basmati, linsum og raitu"},
+ {d:"2026-11-25",n:"Mið",dish:"Pasta Bolognese",sub:"Heilhveitispaghetti, parmesan og salat",prep:"Sjóða kartöflur fyrir morgundaginn og kæla"},
+ {d:"2026-11-26",n:"Fim",dish:"Kjúklingasnitsel",sub:"Með köldu kartöflusalati, gúrku og tómötum"},
+ {d:"2026-11-27",n:"Fös",dish:"Hamborgarar",sub:"Föstudagshefð",fri:true}
+];
+const months=["jan.","feb.","mar.","apr.","maí","jún.","júl.","ág.","sep.","okt.","nóv.","des."];
+const now=new Date();
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today=iso(now);
+const fmt=s=>{const [y,m,d]=s.split("-");return (+d)+". "+months[+m-1]};
+document.getElementById("days").innerHTML=menu.map(x=>{
+ const cls=["day",x.d===today?"today":"",x.d<today?"past":"",x.fri?"fri":""].join(" ");
+ return `<div class="${cls}"><div class="dname">${x.n}<small>${fmt(x.d)}</small></div><div><div class="dish">${x.dish}</div><div class="note">${x.sub}</div>${x.prep?`<div class="note prep">${x.prep}</div>`:""}</div></div>`;
+}).join("");
+let t=menu.find(x=>x.d===today),lab="Í kvöld";
+if(!t){t=menu.find(x=>x.d>today);lab=t?"Næst":"Síðasti réttur";if(!t)t=menu[menu.length-1];}
+document.getElementById("tlab").textContent=lab+" · "+t.n+" "+fmt(t.d);
+document.getElementById("tdish").textContent=t.dish;
+document.getElementById("tsub").textContent=t.sub;
+const tips=[];
+if(t.prep)tips.push(`<div class="tip"><b>Muna:</b> ${t.prep}</div>`);
+if(t.tip)tips.push(`<div class="tip"><b>Blóðsykur:</b> ${t.tip}</div>`);
+document.getElementById("ttips").innerHTML=tips.join("");
+}
+</script>
+</body>
+</html>
